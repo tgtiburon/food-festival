@@ -14,16 +14,41 @@ const path = require("path");
 // Module exports object
 module.exports = { 
     entry:{
-        app: "./assets/js/script.js",
-        events: "./assets/js/events.js",
-        schedule: "./assets/js/schedule.js",
-        tickets: "./assets/js/tickets.js",
+        app: "./assets/js/script.js",//app.bundle.js
+        events: "./assets/js/events.js",// events.bundle.js
+        schedule: "./assets/js/schedule.js",// schedule.bundle.js
+        tickets: "./assets/js/tickets.js",// tickets.bundle.js
     } ,
     // best practice to put bundled code into a folder named dist
     output: {
        // path: path.join(__dirname, '/dist'),
-        filename: 'main.bundle.js'
+       // build will make one file per entry point
+        filename: '[name].bundle.js',
         path: __dirname + "/dist", 
+    },
+    // Used to compress jpgs
+    module: {
+        rules: [
+            {
+                test: /\.jpg$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            // Makes img file names readable
+                            esModule: false,
+                            name (file) {
+                                return "[path][name].[ext]"
+                            },
+                            publicPath: function(url) {
+                                return url.replace("../", "/assets/")
+                            }
+
+                        }
+                    }
+                ]
+            }
+        ]
     },
 
     // We want webpack to use jquery
