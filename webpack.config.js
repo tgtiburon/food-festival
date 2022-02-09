@@ -46,6 +46,10 @@ module.exports = {
                             }
 
                         }
+                    },
+                    // TODO: this might be wrong spot
+                    {
+                        loader: 'image-webpack-loader'
                     }
                 ]
             }

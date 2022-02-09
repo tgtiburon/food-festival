@@ -21,7 +21,7 @@ $(document).ready(function() {
     {
       title: "Our food is seriously the bomb!",
       subtitle: "What are you waiting for?",
-      img: imb2,
+      img: img2,
       btnText: "Purchase Tickets",
       btnUrl: "tickets.html"
     },
