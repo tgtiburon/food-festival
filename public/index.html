@@ -177,12 +177,15 @@
 </body>
 
 <!-- Register the service worker   -->
-(function() {
-  if("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js") 
-    .then(() => console.log("Service Worker registered successfully."))
-    .catch(error => console.log("Service Worker registration failed: ", err));
-  }
-})(); 
+<script>
+  (function() {
+    if("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js") 
+      .then(() => console.log("Service Worker registered successfully."))
+      .catch(error => console.log("Service Worker registration failed: ", err));
+    }
+  })();
+
+</script>
 <!--  The () above says don't just declare the function, but run it -->
 </html>

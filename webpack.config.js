@@ -42,7 +42,7 @@ module.exports = {
                                 return "[path][name].[ext]"
                             },
                             publicPath: function(url) {
-                                return url.replace("../", "/assets/")
+                                return url.replace("../", "/public/assets/")
                                 
                             }
 
