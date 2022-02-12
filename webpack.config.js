@@ -14,17 +14,18 @@ const path = require("path");
 // Module exports object
 module.exports = { 
     entry:{
-        app: "./assets/js/script.js",//app.bundle.js
-        events: "./assets/js/events.js",// events.bundle.js
-        schedule: "./assets/js/schedule.js",// schedule.bundle.js
-        tickets: "./assets/js/tickets.js",// tickets.bundle.js
+        app: "./public/assets/js/script.js",//app.bundle.js
+        events: "./public/assets/js/events.js",// events.bundle.js
+        schedule: "./public/assets/js/schedule.js",// schedule.bundle.js
+        tickets: "./public/assets/js/tickets.js",// tickets.bundle.js
     } ,
     // best practice to put bundled code into a folder named dist
     output: {
        // path: path.join(__dirname, '/dist'),
        // build will make one file per entry point
         filename: '[name].bundle.js',
-        path: __dirname + "/dist", 
+        // changed to /public/dist
+        path: __dirname + "/public/dist", 
     },
     // Used to compress jpgs
     module: {
