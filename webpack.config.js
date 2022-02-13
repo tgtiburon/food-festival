@@ -40,7 +40,7 @@ module.exports = {
                                 return "[path][name].[ext]"
                             },
                             publicPath: function(url) {
-                                return url.replace("../", "./assets/")
+                                return url.replace("../", "./public/assets/")
                                 
                             }
 
@@ -60,7 +60,7 @@ module.exports = {
         // build will make one file per entry point
          filename: '[name].bundle.js',
          // changed to /public/dist
-         path: path.resolve(__dirname , "dist")
+         path: __dirname +  "/public/dist"
      },
 
     // We want webpack to use jquery
@@ -88,7 +88,7 @@ module.exports = {
                 src: path.resolve("public/assets/img/icons/icon-512x512.png"),
                 sizes: [96, 128, 192,256,384, 512],
                 // TODO: might need to add public
-                destination: path.join("assets", "icons")
+                destination: path.join("public", "assets", "icons")
             }]
         })
     ],
