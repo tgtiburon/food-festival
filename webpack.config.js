@@ -1,7 +1,12 @@
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 
 const  webpack  = require("webpack");
 const path = require("path");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
+
+
 
 
 
@@ -19,14 +24,7 @@ module.exports = {
         schedule: "./public/assets/js/schedule.js",// schedule.bundle.js
         tickets: "./public/assets/js/tickets.js",// tickets.bundle.js
     } ,
-    // best practice to put bundled code into a folder named dist
-    output: {
-       // path: path.join(__dirname, '/dist'),
-       // build will make one file per entry point
-        filename: '[name].bundle.js',
-        // changed to /public/dist
-        path: __dirname + "/public/dist", 
-    },
+   
     // Used to compress jpgs
     module: {
         rules: [
@@ -42,7 +40,7 @@ module.exports = {
                                 return "[path][name].[ext]"
                             },
                             publicPath: function(url) {
-                                return url.replace("../", "/public/assets/")
+                                return url.replace("../", "./assets/")
                                 
                             }
 
@@ -56,6 +54,14 @@ module.exports = {
             }
         ]
     },
+     // best practice to put bundled code into a folder named dist
+     output: {
+        // path: path.join(__dirname, '/dist'),
+        // build will make one file per entry point
+         filename: '[name].bundle.js',
+         // changed to /public/dist
+         path: path.resolve(__dirname , "dist")
+     },
 
     // We want webpack to use jquery
     plugins: [
@@ -66,6 +72,24 @@ module.exports = {
         new BundleAnalyzerPlugin({
             // The report outputs to report.HTML file in the dist folder
             analyzerMode: "static", 
+        }),
+
+        // new invokes a constructor
+        new WebpackPwaManifest({
+            name: "Food Event" ,
+            short_name: "Foodies",
+            description: "An app that allows you to view upcoming food events." ,
+            start_url: "../public/index.html",
+            background_color: "#01579b",
+            theme_color: "#ffffff",
+            fingerprints: false,
+            inject: false,
+            icons: [{
+                src: path.resolve("public/assets/img/icons/icon-512x512.png"),
+                sizes: [96, 128, 192,256,384, 512],
+                // TODO: might need to add public
+                destination: path.join("assets", "icons")
+            }]
         })
     ],
 
